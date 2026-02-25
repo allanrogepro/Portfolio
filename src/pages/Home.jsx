@@ -34,6 +34,7 @@ const Home = ({ isAppLoading }) => {
                 </div>
 
                 <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center justify-items-center relative z-10 w-full max-w-7xl">
+                    <h1 className="sr-only">Allan Rogé - Portfolio Web Design, Développement et Communication Digitale</h1>
 
                     <div className="flex flex-col items-center text-center order-2 lg:order-1 lg:items-center w-full">
                         <div
