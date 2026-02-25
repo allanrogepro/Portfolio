@@ -32,10 +32,10 @@ const Legal = () => {
                         <div className="text-gray-600 leading-relaxed">
                             <p>Le site est hébergé par :</p>
                             <p className="mt-2 text-sm bg-gray-50 p-4 rounded-xl inline-block">
-                                <strong>Vercel Inc.</strong><br />
-                                340 S Lemon Ave #4133<br />
-                                Walnut, CA 91789, USA<br />
-                                (Ou remplacer par votre hébergeur réel)
+                                <strong>Netlify, Inc.</strong><br />
+                                512 2nd Street, Suite 200<br />
+                                San Francisco, CA 94107, USA<br />
+                                support@netlify.com
                             </p>
                         </div>
                     </section>
