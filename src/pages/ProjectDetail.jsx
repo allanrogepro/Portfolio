@@ -199,6 +199,33 @@ const ProjectDetail = () => {
                     </div>
                 </div>
 
+                {/* PDF Viewer */}
+                {project.pdf && (
+                    <div className="mb-20">
+                        <h2 className="text-3xl font-black uppercase mb-8 border-b border-gray-200 pb-4 flex justify-between items-center">
+                            <span>Document du projet</span>
+                            <a
+                                href={project.pdf}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm px-6 py-2 bg-black text-white rounded-full font-bold hover:bg-portfolio-yellow hover:text-black transition-colors flex items-center gap-2"
+                            >
+                                <FaExternalLinkAlt size={14} />
+                                Ouvrir en plein écran
+                            </a>
+                        </h2>
+                        <div className="w-full aspect-[1/1.4] md:aspect-video rounded-2xl overflow-hidden shadow-xl bg-gray-100">
+                            <iframe
+                                src={`${project.pdf}#toolbar=0&navpanes=0`}
+                                className="w-full h-full border-0"
+                                title="Project PDF Document"
+                            >
+                                <p>Votre navigateur ne permet pas de lire les PDF. <a href={project.pdf} target="_blank" rel="noopener noreferrer">Cliquez ici pour le télécharger</a>.</p>
+                            </iframe>
+                        </div>
+                    </div>
+                )}
+
                 {/* Gallery */}
                 {project.gallery && project.gallery.length > 0 && (
                     <div className="mb-20">

@@ -30,7 +30,8 @@ const ProjectEditor = () => {
         technologies: [],
         gallery: [],
         featured: false,
-        video: ''
+        video: '',
+        pdf: ''
     });
 
     // Tech Input State
@@ -385,6 +386,66 @@ const ProjectEditor = () => {
                                                             setProject(prev => ({ ...prev, video: data.publicUrl }));
                                                         } catch (error) {
                                                             alert('Erreur upload vidéo: ' + error.message);
+                                                        } finally {
+                                                            setUploading(false);
+                                                        }
+                                                    }
+                                                }}
+                                                disabled={uploading}
+                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                            />
+                                            {uploading && <div className="absolute inset-0 bg-white/80 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black"></div></div>}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Document PDF */}
+                            <div>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 ml-1">Document PDF (Optionnel)</label>
+                                {project.pdf ? (
+                                    <div className="relative w-full h-32 bg-gray-50 rounded-2xl border border-gray-200 mb-6 flex items-center justify-center group overflow-hidden">
+                                        <div className="text-center z-10 relative">
+                                            <FaCheck className="mx-auto text-3xl mb-2 text-green-500" />
+                                            <p className="font-bold text-sm text-gray-700">PDF chargé</p>
+                                            <a href={project.pdf} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-500 hover:underline mt-1 inline-block">Voir le document</a>
+                                        </div>
+                                        <button
+                                            type="button"
+                                            onClick={() => setProject(prev => ({ ...prev, pdf: '' }))}
+                                            className="absolute top-4 right-4 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:scale-110 shadow-sm z-20"
+                                            title="Supprimer le PDF"
+                                        >
+                                            <FaTrash size={14} />
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="mb-6">
+                                        <div className="group relative w-full h-32 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200 hover:border-black hover:bg-gray-100 transition-all flex flex-col items-center justify-center cursor-pointer overflow-hidden">
+                                            <div className="text-center text-gray-400">
+                                                <FaMagic className="mx-auto text-2xl mb-2" />
+                                                <p className="font-bold text-xs">Uploader un PDF (.pdf)</p>
+                                            </div>
+                                            <input
+                                                type="file"
+                                                accept="application/pdf"
+                                                onChange={async (e) => {
+                                                    if (e.target.files && e.target.files.length > 0) {
+                                                        const file = e.target.files[0];
+                                                        setUploading(true);
+                                                        try {
+                                                            const fileExt = file.name.split('.').pop();
+                                                            const fileName = `pdfs/${Math.random()}.${fileExt}`;
+                                                            const { error } = await supabase.storage
+                                                                .from('portfolio-images')
+                                                                .upload(fileName, file);
+
+                                                            if (error) throw error;
+
+                                                            const { data } = supabase.storage.from('portfolio-images').getPublicUrl(fileName);
+                                                            setProject(prev => ({ ...prev, pdf: data.publicUrl }));
+                                                        } catch (error) {
+                                                            alert('Erreur upload PDF: ' + error.message);
                                                         } finally {
                                                             setUploading(false);
                                                         }
