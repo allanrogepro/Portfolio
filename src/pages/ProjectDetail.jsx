@@ -52,6 +52,37 @@ const ProjectDetail = () => {
         );
     }
 
+    const renderDescription = (text) => {
+        if (!text) return null;
+
+        // Découper par double saut de ligne pour les paragraphes
+        const paragraphs = text.split('\n\n');
+
+        return paragraphs.map((paragraph, index) => {
+            // Découper par simple saut de ligne pour les retours à la ligne
+            const lines = paragraph.split('\n');
+            return (
+                <p key={index} className={index < paragraphs.length - 1 ? "mb-6" : ""}>
+                    {lines.map((line, i) => {
+                        // Gérer le texte en gras entouré de **
+                        const parts = line.split(/(\*\*.*?\*\*)/g);
+                        return (
+                            <React.Fragment key={i}>
+                                {parts.map((part, j) => {
+                                    if (part.startsWith('**') && part.endsWith('**')) {
+                                        return <strong key={j} className="font-black text-black">{part.slice(2, -2)}</strong>;
+                                    }
+                                    return part;
+                                })}
+                                {i < lines.length - 1 && <br />}
+                            </React.Fragment>
+                        );
+                    })}
+                </p>
+            );
+        });
+    };
+
     return (
         <PageTransition
             className="min-h-screen bg-white pt-24 md:pt-32 pb-20"
@@ -148,7 +179,7 @@ const ProjectDetail = () => {
                     <div className="lg:col-span-2">
                         <h2 className="text-2xl font-black uppercase mb-6">À propos</h2>
                         <div className="prose prose-lg text-gray-600 leading-relaxed">
-                            <p>{project.description}</p>
+                            {renderDescription(project.description)}
                         </div>
                     </div>
 

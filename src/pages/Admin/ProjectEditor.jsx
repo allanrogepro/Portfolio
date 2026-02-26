@@ -314,6 +314,9 @@ const ProjectEditor = () => {
                                     className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-medium focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-all resize-none"
                                     placeholder="Décrivez le challenge, la solution et le résultat..."
                                 />
+                                <p className="text-xs text-gray-400 mt-1 ml-1">
+                                    Astuce : Conservez vos sauts de ligne pour aérer le texte. Entourez un mot de <strong>**</strong> pour le mettre en gras (ex: <strong>**Le pitch**</strong>).
+                                </p>
                             </div>
                         </div>
                     </motion.div>
