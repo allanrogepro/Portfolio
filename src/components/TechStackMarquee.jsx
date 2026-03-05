@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { SiAdobephotoshop, SiAdobeillustrator, SiTailwindcss } from 'react-icons/si';
-import { FaFigma, FaReact } from 'react-icons/fa';
+import { SiAdobephotoshop, SiAdobeillustrator } from 'react-icons/si';
+import { FaFigma } from 'react-icons/fa';
 import { VscCode } from "react-icons/vsc";
 import { IoLogoJavascript } from "react-icons/io5";
 
@@ -10,8 +10,6 @@ const techs = [
     { id: 2, icon: SiAdobeillustrator, color: '#FF9A00', name: 'Illustrator' },
     { id: 3, icon: FaFigma, color: '#0acf83', name: 'Figma' },
     { id: 4, icon: VscCode, color: '#007ACC', name: 'VS Code' },
-    { id: 5, icon: FaReact, color: '#61DAFB', name: 'React' },
-    { id: 6, icon: SiTailwindcss, color: '#06B6D4', name: 'Tailwind' },
     { id: 7, icon: IoLogoJavascript, color: '#F7DF1E', name: 'JS' },
 ];
 
